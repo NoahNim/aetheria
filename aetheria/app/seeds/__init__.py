@@ -1,0 +1,12 @@
+from flask.cli import AppGroup
+
+# Creates a seed group to hold our commands
+# So we can type `flask seed --help`
+seed_commands = AppGroup('seed')
+
+# Creates the `flask seed all` command
+# @seed_commands.command('all')
+
+
+# Creates the `flask seed undo` command
+# @seed_commands.command('undo')
