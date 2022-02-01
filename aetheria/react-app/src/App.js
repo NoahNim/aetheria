@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import LoginFormPage from "./components/auth/LoginFormPage";
-import { authenticate } from ""
+import ContentWrap from "./components/ContentWrap";
+import { authenticate } from "./store/session";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,13 +21,22 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginFormPage />
-        </Route>
-        </Switch>
-    </BrowserRouter>
+    <>
+      {loaded && (
+        < BrowserRouter >
+          <Provider store={loaded}>
+          <ContentWrap>
+            <Switch>
+              <Route path="/login" exact={true}>
+                <LoginFormPage />
+              </Route>
+            </Switch>
+            </ContentWrap>
+          </Provider>
+        </BrowserRouter >
+      )
+      }
+    </>
   );
 }
 
